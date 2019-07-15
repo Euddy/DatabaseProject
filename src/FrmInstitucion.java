@@ -3,8 +3,10 @@ import com.IO.Database;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import jdk.nashorn.internal.ir.BreakNode;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -27,11 +29,29 @@ public class FrmInstitucion extends javax.swing.JFrame
      */
     public FrmInstitucion()
     {
-        initComponents();
+        
+         if (Database.TryConnection()){
+//            FrmInstitucion fei = new FrmInstitucion();
+//            fei.setVisible(true);
+           
+              initComponents();
         Database.Initialize();
+        this.setLocationRelativeTo(null);
         tabla1 = (DefaultTableModel) jTable1.getModel();
         tabla2 = (DefaultTableModel) jTable2.getModel();
         loaded = false;
+        }
+        else
+        {
+           // JOptionPane.showMessageDialog(rootPane, "Ingrese sus Datos.");
+            FrmLogin lg = new FrmLogin();
+            
+            lg.setVisible(true);
+            this.setVisible(false);
+            
+            
+        }
+      
     }
 
     /**

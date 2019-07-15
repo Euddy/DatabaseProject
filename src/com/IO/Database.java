@@ -22,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
 public class Database
         
 {
-      private static String user, pass, url;
+      private static String user, pass, url, nombreBD;
       private static int port;
     private static ArrayList<String> comandossql;
     
@@ -63,7 +63,7 @@ public class Database
                 //"jdbc:postgresql://127.0.0.1:5432/Estructura", "postgres", "dbabase3") ;
                // "jdbc:oracle:thin:@" + url + ":" + port + ":" + host, user, pass);
               //  "jdbc:postgresql://localhost:5432/Estructura", "postgres", "dbabase3") ;
-        "jdbc:postgres://" + url + ":" + port + "/Estructura", user, pass);
+        "jdbc:postgresql://" + url + ":" + port + '/'+nombreBD, user, pass);
         
 
             if (conn != null) {
@@ -101,12 +101,12 @@ public class Database
         }
     }
     
-    public static void Connection(String user, String pass, int port, String url)
+    public static void Connection(String user, String pass, int port,String nombreBD, String url)
     {
         Database.user = user;
         Database.pass = pass;
         Database.port = port;
-       // Database.host = host;
+        Database.nombreBD = nombreBD;
         Database.url = url;
         comandossql = new ArrayList<>();
     }
